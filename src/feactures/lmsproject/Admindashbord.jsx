@@ -86,33 +86,41 @@ export default function Admindashbord() {
       <Naverbars />
       <div className='container py-4'>
         <div className='row align-items-center mb-4'>
-          <div className='col-12 col-md-6'>
+          <div className='col-12 col-xl-5 p-0'>
             <h1 className='display-5 fw-bold text-primary mb-3'>Manager Dashboard</h1>
           </div>
-          <div className='col-12 col-md-6'>
-            <div className='d-flex flex-wrap gap-3'>
-              <div className="card stats-card bg-white shadow-sm">
-                <div className="card-body p-3">
-                  <h6 className="text-muted mb-2">Approved</h6>
-                  <h3 className="mb-0">{approvecount}</h3>
+          <div className='col-12 col-xl-7'>
+            <div className='row row-cols-2 row-cols-md-4 row-gap-4 col-gap-4 mx-2 '>
+              <div className="col">
+                <div className="card stats-card bg-white shadow-sm h-100">
+                  <div className="card-body p-3 text-center">
+                    <h6 className="text-muted mb-2">Approved</h6>
+                    <h3 className="mb-0">{approvecount}</h3>
+                  </div>
                 </div>
               </div>
-              <div className="card stats-card bg-white shadow-sm">
-                <div className="card-body p-3">
-                  <h6 className="text-muted mb-2">Down Payment</h6>
-                  <h3 className="mb-0">{dowenpaymentcount}</h3>
+              <div className="col">
+                <div className="card stats-card bg-white shadow-sm h-100">
+                  <div className="card-body p-3 text-center">
+                    <h6 className="text-muted mb-2">Down Payment</h6>
+                    <h3 className="mb-0">{dowenpaymentcount}</h3>
+                  </div>
                 </div>
               </div>
-              <div className="card stats-card bg-white shadow-sm">
-                <div className="card-body p-3">
-                  <h6 className="text-muted mb-2">Disbursed</h6>
-                  <h3 className="mb-0">{disbursedcount}</h3>
+              <div className="col">
+                <div className="card stats-card bg-white shadow-sm h-100">
+                  <div className="card-body p-3 text-center">
+                    <h6 className="text-muted mb-2">Disbursed</h6>
+                    <h3 className="mb-0">{disbursedcount}</h3>
+                  </div>
                 </div>
               </div>
-              <div className="card stats-card bg-white shadow-sm">
-                <div className="card-body p-3">
-                  <h6 className="text-muted mb-2">EMIs Pending</h6>
-                  <h3 className="mb-0">{Emiscount}</h3>
+              <div className="col">
+                <div className="card stats-card bg-white shadow-sm h-100">
+                  <div className="card-body p-3 text-center">
+                    <h6 className="text-muted mb-2">EMIs Pending</h6>
+                    <h3 className="mb-0">{Emiscount}</h3>
+                  </div>
                 </div>
               </div>
             </div>
@@ -124,7 +132,7 @@ export default function Admindashbord() {
             <div className='table-responsive'>
               <table className='table table-hover mb-0'>
                 <thead>
-                  <tr className='bg-primary text-white'>
+                  <tr className='text-center'>
                     <th className='py-3'>Customer Name</th>
                     <th className='py-3'>Loan Item</th>
                     <th className='py-3'>Product Cost</th>
@@ -166,7 +174,7 @@ export default function Admindashbord() {
     data.map((d) => {
       const latestStatus = [...d.status].sort((a, b) => (a.timestamp < b.timestamp ? 1 : -1))[0]?.code;
       return (
-        <tr key={d._id}>
+        <tr key={d._id} className='text-center'>
           <td className='py-3'>{d.customerName}</td>
           <td className='py-3'>{d.loanitem}</td>
           <td className='py-3'>₹{d.productcost}</td>

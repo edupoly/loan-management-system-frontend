@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Usernavebar from "./usernavebar";
-import './UserDashboard.css';
+import "./UserDashboard.css";
 import {
   useGetuserdetailsQuery,
   useLazyGetuserdetailsQuery,
@@ -28,7 +28,6 @@ export default function Userdashbord() {
     data?.emis
       .filter((s) => s.emiStatus === "paid")
       .reduce((acc, emi) => acc + emi.emiAmount, 0);
-  
 
   const totalUnpaid =
     !isLoading &&
@@ -57,20 +56,20 @@ export default function Userdashbord() {
       <Usernavebar />
       <div className="container py-4">
         <div className="row align-items-center mb-4">
-          <div className="col-12 col-md-6">
+          <div className="col-12 col-md-8">
             <h1 className="dashboard-title">User Dashboard</h1>
           </div>
-          <div className="col-12 col-md-6">
-            <div className="d-flex flex-wrap gap-3">
-              <div className="stat-card">
-                <div className="stat-content">
+          <div className="col-12 col-lg-4 justify-content-end">
+            <div className="row row-cols-2">
+              <div className="col">
+                <div className="stat-card d-flex justify-content-between align-items-center">
                   <span className="stat-label">Paid EMIs</span>
                   <span className="stat-value">{paidemi}</span>
                 </div>
               </div>
-              <div className="stat-card">
-                <div className="stat-content">
-                  <span className="stat-label">Unpaid EMIs</span>
+              <div className="col">
+                <div className="stat-card d-flex justify-content-between align-items-center">
+                  <span className="stat-label w-75">Unpaid EMIs</span>
                   <span className="stat-value">{unpaidemi}</span>
                 </div>
               </div>
@@ -86,47 +85,77 @@ export default function Userdashbord() {
                 <div className="table-responsive">
                   <table className="table table-hover align-middle">
                     <thead>
-                      <tr>
+                      <tr className="text-center">
                         <th>Principal</th>
                         <th>Interest</th>
                         <th>EMI Amount</th>
+                        <th className="d-flex flex-1 d-md-none h-100">Status</th>
                         <th>Due Date</th>
-                        <th>Status</th>
+                        <th className="d-none d-md-block">Status</th>
                       </tr>
                     </thead>
-                   
+
                     <tbody>
-  {!isLoading && (() => {
- 
-    const firstUnpaidIndex = data?.emis.findIndex((emi) => emi.emiStatus !== "paid");
+                      {!isLoading &&
+                        (() => {
+                          const firstUnpaidIndex = data?.emis.findIndex(
+                            (emi) => emi.emiStatus !== "paid"
+                          );
 
-    return data?.emis.map((emis, index) => (
-      <tr key={emis._id}>
-        <td>₹{emis.Principal}</td>
-        <td>₹{emis.Interest}</td>
-        <td>₹{emis.emiAmount}</td>
-        <td>{new Date(emis.emiDate).toLocaleDateString()}</td>
-        <td>
-          {emis.emiStatus === "paid" ? (
-            <span className="status-badge paid">Paid</span>
-          ) : index === firstUnpaidIndex ? (
-            <button
-              className="btn btn-primary btn-sm pay-btn"
-              onClick={() => payment(data?._id, emis._id)}
-            >
-              Pay Now
-            </button>
-          ) : (
-            <button className="btn btn-secondary btn-sm" disabled>
-              Pending
-            </button>
-          )}
-        </td>
-      </tr>
-    ));
-  })()}
-</tbody>
-
+                          return data?.emis.map((emis, index) => (
+                            <tr key={emis._id} className="text-center">
+                              <td>₹{emis.Principal}</td>
+                              <td>₹{emis.Interest}</td>
+                              <td>₹{emis.emiAmount}</td>
+                              <td className="d-block d-md-none">
+                                {emis.emiStatus === "paid" ? (
+                                  <span className="status-badge paid">
+                                    Paid
+                                  </span>
+                                ) : index === firstUnpaidIndex ? (
+                                  <button
+                                    className="btn btn-primary btn-sm pay-btn"
+                                    onClick={() => payment(data?._id, emis._id)}
+                                  >
+                                    Pay Now
+                                  </button>
+                                ) : (
+                                  <button
+                                    className="btn btn-secondary btn-sm"
+                                    disabled
+                                  >
+                                    Pending
+                                  </button>
+                                )}
+                              </td>
+                              <td>
+                                {new Date(emis.emiDate).toLocaleDateString()}
+                              </td>
+                              <td className="d-none d-md-flex">
+                                {emis.emiStatus === "paid" ? (
+                                  <span className="status-badge paid">
+                                    Paid
+                                  </span>
+                                ) : index === firstUnpaidIndex ? (
+                                  <button
+                                    className="btn btn-primary btn-sm pay-btn"
+                                    onClick={() => payment(data?._id, emis._id)}
+                                  >
+                                    Pay Now
+                                  </button>
+                                ) : (
+                                  <button
+                                    className="btn btn-secondary btn-sm"
+                                    disabled
+                                  >
+                                    Pending
+                                  </button>
+                                )}
+                              </td>
+                            </tr>
+                          ));
+                        })()}
+                    </tbody>
                   </table>
                 </div>
               </div>
@@ -137,16 +166,16 @@ export default function Userdashbord() {
             <div className="card dashboard-card h-100">
               <div className="card-body">
                 <h2 className="card-title mb-4">Payment Summary</h2>
-                <div className="summary-item">
-                  <span>Total Payment</span>
+                <div className="d-flex justify-content-between align-items-center my-3">
+                  <span className="fs-5">Total Payment</span>
                   <span className="amount">₹{totalpayment || 0}</span>
                 </div>
-                <div className="summary-item">
-                  <span>Total Paid</span>
+                <div className="d-flex justify-content-between align-items-center my-3">
+                  <span className="fs-5">Total Paid</span>
                   <span className="amount paid">₹{totalPaid || 0}</span>
                 </div>
-                <div className="summary-item">
-                  <span>Total Unpaid</span>
+                <div className="d-flex justify-content-between align-items-center my-3">
+                  <span className="fs-5">Total Unpaid</span>
                   <span className="amount unpaid">₹{totalUnpaid || 0}</span>
                 </div>
               </div>

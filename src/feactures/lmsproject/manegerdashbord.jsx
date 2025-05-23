@@ -53,34 +53,42 @@ export default function Manegerdashbord() {
       <div className="dashboard-content">
         <div className="container py-3">
          
-       <div className='row align-items-center mb-4'>
-          <div className='col-12 col-md-6'>
+        <div className='row align-items-center mb-4'>
+          <div className='col-12 col-xl-5 p-0'>
             <h1 className='display-5 fw-bold text-primary mb-3'>Agent Dashboard</h1>
           </div>
-          <div className='col-12 col-md-6'>
-            <div className='d-flex flex-wrap gap-3'>
-              <div className="card stats-card bg-white shadow-sm">
-                <div className="card-body p-3">
-                  <h6 className="text-muted mb-2">Approved</h6>
-                  <h3 className="mb-0">{approvingcount}</h3>
+          <div className='col-12 col-xl-7'>
+            <div className='row row-cols-2 row-cols-md-4 row-gap-4 col-gap-4 mx-2 '>
+              <div className="col">
+                <div className="card stats-card bg-white shadow-sm h-100">
+                  <div className="card-body p-3 text-center">
+                    <h6 className="text-muted mb-2">Approved</h6>
+                    <h3 className="mb-0">{approvingcount}</h3>
+                  </div>
                 </div>
               </div>
-              <div className="card stats-card bg-white shadow-sm">
-                <div className="card-body p-3">
-                  <h6 className="text-muted mb-2">Down Payment</h6>
-                  <h3 className="mb-0">{dowenpaymentcount}</h3>
+              <div className="col">
+                <div className="card stats-card bg-white shadow-sm h-100">
+                  <div className="card-body p-3 text-center">
+                    <h6 className="text-muted mb-2">Down Payment</h6>
+                    <h3 className="mb-0">{dowenpaymentcount}</h3>
+                  </div>
                 </div>
               </div>
-              <div className="card stats-card bg-white shadow-sm">
-                <div className="card-body p-3">
-                  <h6 className="text-muted mb-2">Disbursed</h6>
-                  <h3 className="mb-0">{disbursedcount}</h3>
+              <div className="col">
+                <div className="card stats-card bg-white shadow-sm h-100">
+                  <div className="card-body p-3 text-center">
+                    <h6 className="text-muted mb-2">Disbursed</h6>
+                    <h3 className="mb-0">{disbursedcount}</h3>
+                  </div>
                 </div>
               </div>
-              <div className="card stats-card bg-white shadow-sm">
-                <div className="card-body p-3">
-                  <h6 className="text-muted mb-2">EMIs Pending</h6>
-                  <h3 className="mb-0">{Emiscount}</h3>
+              <div className="col">
+                <div className="card stats-card bg-white shadow-sm h-100">
+                  <div className="card-body p-3 text-center">
+                    <h6 className="text-muted mb-2">EMIs Pending</h6>
+                    <h3 className="mb-0">{Emiscount}</h3>
+                  </div>
                 </div>
               </div>
             </div>
@@ -92,7 +100,7 @@ export default function Manegerdashbord() {
               <div className="table-responsive">
                 <table className="table table-hover mb-0">
                   <thead>
-                    <tr>
+                    <tr className="text-center">
                       <th>Customer Name</th>
                       <th>Loan Item</th>
                       <th>Product Cost</th>
@@ -117,7 +125,7 @@ export default function Manegerdashbord() {
                         )[0].code;
 
                         return (
-                          <tr key={d._id}>
+                          <tr key={d._id} className="text-center">
                             <td>{d.customerName}</td>
                             <td>{d.loanitem}</td>
                             <td>₹{d.productcost}</td>

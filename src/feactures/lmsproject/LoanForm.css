@@ -89,9 +89,6 @@
         font-size: 1.75rem;
     }
 
-    .card-body {
-        padding: 1.5rem !important;
-    }
 }
 
 @media (max-width: 576px) {

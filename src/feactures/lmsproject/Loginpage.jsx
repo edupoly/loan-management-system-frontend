@@ -23,6 +23,7 @@ export default function Loginpage() {
       <div className="login-container">
         <div className="login-card">
           <div className="login-header">
+            <h1 className="login-title">Sign In</h1>
             <p className="login-subtitle">Please sign in to your account</p>
           </div>
 
