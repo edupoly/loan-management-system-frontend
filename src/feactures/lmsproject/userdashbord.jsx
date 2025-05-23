@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Usernavebar from "./usernavebar";
-import "./UserDashboard.css";
+import './UserDashboard.css';
 import {
   useGetuserdetailsQuery,
   useLazyGetuserdetailsQuery,
@@ -28,6 +28,7 @@ export default function Userdashbord() {
     data?.emis
       .filter((s) => s.emiStatus === "paid")
       .reduce((acc, emi) => acc + emi.emiAmount, 0);
+
 
   const totalUnpaid =
     !isLoading &&
